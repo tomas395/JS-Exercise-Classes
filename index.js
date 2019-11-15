@@ -72,7 +72,7 @@ class Person {
 */
 
 class Car {
-  constructor() {
+  constructor(model, milesPerGallon) {
     this.tank = 0;
     this.odometer = 0;
     this.model = model;
@@ -134,7 +134,8 @@ class Instructor extends Lambdasian {
     super(argu);
     this.specialty = argu.specialty;
     this.favLanguage = argu.favLanguage;
-    this.catchphrase = argu.catchphrase;
+    this.catchPhrase = argu.catchPhrase;
+    this.student = argu.student;
   }
   demo(subject) {
     return `Today we learn about ${subject}`;
@@ -162,14 +163,18 @@ class Instructor extends Lambdasian {
 class Student extends Lambdasian {
   constructor(argu) {
     super(argu);
-
     this.previousBackground = argu.previousBackground;
-    this.className = arg.className;
-    this.favSubjects = [];
+    this.className = argu.className;
+    this.favSubjects = argu.favSubjects;
   }
   listSubjects() {
-    this.favSubjects.push(sub);
-    return `Loving HTML, CSS and JS!`;
+    return `Loving ${this.favSubjects}!`;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 /*
@@ -185,7 +190,20 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {}
+class ProjectManager extends Instructor {
+  constructor(argu) {
+    super(argu);
+    this.gradClassName = argu.gradClassName;
+    this.favInstructor = argu.favInstructor;
+  }
+
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
+}
 
 /*
   STRETCH PROBLEM (no tests!)
